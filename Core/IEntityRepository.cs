@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
+    //generic constraint
     public interface IEntityRepository<T> where T:class, IEntity, new()
     {
         T Get(Expression<Func<T, bool>> filter);

@@ -11,15 +11,13 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ProductManager// : IProductService
+    public class ProductManager : IProductService
     {
-        private IProductDal _productDal;
-        private ICategoryService _categoryService;
+        private IProductDal _productDal;        
 
-        public ProductManager(IProductDal productDal, ICategoryService categoryService)
+        public ProductManager(IProductDal productDal)
         {
-            _productDal = productDal;
-            _categoryService = categoryService;
+            _productDal = productDal;            
         }
 
         public IResult Add(Product product)
@@ -32,6 +30,11 @@ namespace Business.Concrete
         {
             _productDal.Delete(product);
             return new SuccessResult(Messages.ProductDeleted);
+        }
+
+        public IList<Product> GetAll()
+        {
+            return _productDal.GetList().ToList();
         }
 
         public IDataResult<Product> GetById(int productId)
