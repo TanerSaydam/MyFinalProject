@@ -1,6 +1,8 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Core.DataAccess;
+using Core.DataAccess.EntityFramework;
 using Entities.Concrete;
 using System;
 
@@ -8,7 +10,7 @@ namespace ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 

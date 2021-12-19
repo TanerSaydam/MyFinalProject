@@ -3,17 +3,20 @@ using Business.Constants;
 using Core.Unilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Core.DataAccess;
+using Core.DataAccess.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        private IProductDal _productDal;        
+        private readonly IProductDal _productDal;        
 
         public ProductManager(IProductDal productDal)
         {
@@ -50,6 +53,11 @@ namespace Business.Concrete
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
+        }
+
+        public IList<ProductDetailDto> GetProductDetails()
+        {
+            return _productDal.GetProductDetails();
         }
 
         public IResult TranscaptionalOperation(Product product)

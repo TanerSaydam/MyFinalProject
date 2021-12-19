@@ -1,5 +1,4 @@
-﻿using Core.DataAccess;
-using Core.DataAccess.EntityFramework;
+﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework.Context;
 using Entities.Concrete;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : EfEntityRepositoryBase<Category, NorthwindContext>, ICategoryDal
+    public class EfOrderDal : EfEntityRepositoryBase<Order,NorthwindContext>, IOrderDal
     {
     }
 }
