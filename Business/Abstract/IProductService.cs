@@ -1,4 +1,4 @@
-﻿using Core.Unilities.Results;
+﻿using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -10,12 +10,11 @@ using System.Threading.Tasks;
 namespace Business.Abstract
 {
     public interface IProductService
-    {
-        IList<Product> GetAll();
-        IList<ProductDetailDto> GetProductDetails();
+    {        
+        IDataResult<IList<ProductDetailDto>> GetProductDetails();
         IDataResult<Product> GetById(int productId);
-        IDataResult<List<Product>> GetList();
-        IDataResult<List<Product>> GetListByCategory(int categoryId);
+        IDataResult<IList<Product>> GetAll();
+        IDataResult<IList<Product>> GetListByCategory(int categoryId);
         IResult Add(Product product);
         IResult Update(Product product);
         IResult Delete(Product product);

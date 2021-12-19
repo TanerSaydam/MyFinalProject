@@ -15,5 +15,13 @@ namespace Business.Constants
         public static string CategoryAdded = "Kategori başarıyla eklendi";
         public static string CategoryDeleted = "Kategori başarıyla silindi";
         public static string CategoryUpdated = "Kategori başarıyla güncellendi";
+
+        public static string CustomerAdded = "Müşteri başarıyla eklendi";
+        public static string CustomerDeleted = "Müşteri başarıyla silindi";
+        public static string CustomerUpdated = "Müşteri başarıyla güncellendi";
+
+        public static string OrderAdded = "Sipariş başarıyla eklendi";
+        public static string OrderDeleted = "Sipariş başarıyla silindi";
+        public static string OrderUpdated = "Sipariş başarıyla güncellendi";
     }
 }

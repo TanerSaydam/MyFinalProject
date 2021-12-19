@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Unilities.Results;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Core.DataAccess;
@@ -33,31 +33,26 @@ namespace Business.Concrete
         {
             _productDal.Delete(product);
             return new SuccessResult(Messages.ProductDeleted);
-        }
-
-        public IList<Product> GetAll()
-        {
-            return _productDal.GetList().ToList();
-        }
+        }        
 
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
 
-        public IDataResult<List<Product>> GetList()
+        public IDataResult<IList<Product>> GetAll()
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
+            return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
-        public IDataResult<List<Product>> GetListByCategory(int categoryId)
+        public IDataResult<IList<Product>> GetListByCategory(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
+            return new SuccessDataResult<IList<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
         }
 
-        public IList<ProductDetailDto> GetProductDetails()
+        public IDataResult<IList<ProductDetailDto>> GetProductDetails()
         {
-            return _productDal.GetProductDetails();
+            return new SuccessDataResult<IList<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
         public IResult TranscaptionalOperation(Product product)

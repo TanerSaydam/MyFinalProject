@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
-using Core.Unilities.Results;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -21,27 +22,30 @@ namespace Business.Concrete
 
         public IResult Add(Category category)
         {
-            throw new NotImplementedException();
+            _categoryDal.Add(category);
+            return new SuccessResult(Messages.CategoryAdded);
         }
 
         public IResult Delete(Category category)
         {
-            throw new NotImplementedException();
+            _categoryDal.Delete(category);
+            return new SuccessResult(Messages.CategoryDeleted);
         }
 
         public IDataResult<Category> GetById(int categoryId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Category>(_categoryDal.Get(x => x.CategoryId == categoryId));
         }
 
-        public IDataResult<List<Category>> GetList()
+        public IDataResult<IList<Category>> GetList()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<IList<Category>>(_categoryDal.GetList());
         }
 
         public IResult Update(Category category)
         {
-            throw new NotImplementedException();
+            _categoryDal.Update(category);
+            return new SuccessResult(Messages.CategoryUpdated);
         }
     }
 }
