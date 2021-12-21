@@ -42,6 +42,10 @@ namespace Business.Concrete
 
         public IDataResult<IList<Product>> GetAll()
         {
+            //if (DateTime.Now.Hour == 20)
+            //{
+            //    return new ErrorDataResult<IList<Product>>(Messages.MaintenanceTime);
+            //}
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
