@@ -12,7 +12,7 @@ namespace ConsoleUI
     {
         static void Main()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
             foreach (var product in productManager.GetProductDetails().Data)
             {

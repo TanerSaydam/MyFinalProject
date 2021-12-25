@@ -11,12 +11,15 @@ namespace Business.Constants
         public static string ProductAdded = "Ürün başarıyla eklendi";
         public static string ProductDeleted = "Ürün başarıyla silindi";
         public static string ProductUpdated = "Ürün başarıyla güncellendi";
+        public static string ProductCountOfCategoryError = "Bir kategori de en fazla 10 ürün olabilir";
+        public static string ProductNameAlreadyExists = "Bu ürün isminde bir kayıt mevcut";
         
         public static string MaintenanceTime = "Sistem bakımda";
 
         public static string CategoryAdded = "Kategori başarıyla eklendi";
         public static string CategoryDeleted = "Kategori başarıyla silindi";
         public static string CategoryUpdated = "Kategori başarıyla güncellendi";
+        public static string CategoryLimitExceded = "Kategori limiti aşıldığı için yeni ürün eklenemiyor";
 
         public static string CustomerAdded = "Müşteri başarıyla eklendi";
         public static string CustomerDeleted = "Müşteri başarıyla silindi";
