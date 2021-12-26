@@ -72,8 +72,7 @@ namespace Business.Concrete
         [CacheAspect]
         [PerformanceAspect(5)]
         public IDataResult<IList<Product>> GetAll()
-        {
-            Thread.Sleep(6000);
+        {            
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
