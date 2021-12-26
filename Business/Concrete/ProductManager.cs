@@ -17,6 +17,10 @@ using Core.CrossCuttingConcerns.Validation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
+using Core.Aspects.Autofac.Performance;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -32,6 +36,7 @@ namespace Business.Concrete
 
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             IResult result = BusinessRules.Run
@@ -50,23 +55,25 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Delete(Product product)
         {
             _productDal.Delete(product);
             return new SuccessResult(Messages.ProductDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<Product> GetById(int productId)
         {
+            
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<IList<Product>> GetAll()
         {
-            //if (DateTime.Now.Hour == 20)
-            //{
-            //    return new ErrorDataResult<IList<Product>>(Messages.MaintenanceTime);
-            //}
+            Thread.Sleep(6000);
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
@@ -80,12 +87,17 @@ namespace Business.Concrete
             return new SuccessDataResult<IList<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+        [TransactionScopeAspect]
         public IResult TranscaptionalOperation(Product product)
         {
             _productDal.Update(product);
+            throw new Exception("");
+            product.ProductName = "Transcaption Deneme";
+            _productDal.Add(product);
             return new SuccessResult(Messages.ProductUpdated);
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Product product)
         {
             _productDal.Update(product);
