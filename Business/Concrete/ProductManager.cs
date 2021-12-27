@@ -76,7 +76,7 @@ namespace Business.Concrete
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
-        public IDataResult<IList<Product>> GetListByCategory(int categoryId)
+        public IDataResult<IList<Product>> GetListByCategoryId(int categoryId)
         {
             return new SuccessDataResult<IList<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
         }
